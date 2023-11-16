@@ -1,13 +1,11 @@
 body {
 background-color: rgb(red, green, blue);
-  }
-  
+}
 h1 {
 color: black;
 text-align: left;
-  }
-  
+}
 p {
 font-family: verdana;
 font-size: 40px;
-  }
+}
