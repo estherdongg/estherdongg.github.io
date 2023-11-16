@@ -1,0 +1,4 @@
+### Based on the sample website last week we did, we replace the texts of heard 1 which is our band name 
+### And we puted our member's names in the header 2, band's bio and representative works as well
+### Then we were wondering how to insert the image and audio files onto the webpage. In the sample webpage you gave us, we observed that there is file name "oprah.gif" and "mtec343.mp3", I was confusing where's these files came from or located. Then our member Sunshiyu found that we should put these files in the same folder with the index.html, and align the file name in the index.html
+### The most tricky part is css file, we just copy the code from the webpage but we were confusing to fix the indentacy, so we spent much time on this, and finally we made all lines have the same indentacy, and seted up the color we want. And we did it!
