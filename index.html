@@ -150,51 +150,46 @@
       border-top: 1px solid var(--border);
     }
 
-    /* Container for gallery */
+    /* Common grid style */
     .photo-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px; /* spacing between rows */
-    }
-
-    /* Each row = 3 columns */
-    .photo-grid .row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr); /* 3 per row */
       gap: 12px;
+      margin-bottom: 20px;
     }
 
-    /* Landscape row images */
-    .photo-grid .landscape-row img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    display: block;
-    }
-
-    /* Portrait row images */
-    .photo-grid .portrait-row img {
+    /* Landscape row */
+    .photo-grid.landscape-row img {
       width: 100%;
-      height: 320px; /* taller for portrait */
+      height: 220px;
       object-fit: cover;
       border-radius: 10px;
       border: 1px solid var(--border);
       display: block;
     }
 
-    /* Responsive: stack into 1 or 2 columns on smaller screens */
+    /* Portrait row */
+    .photo-grid.portrait-row img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    /* Responsive adjustments */
     @media (max-width: 900px) {
-      .photo-grid .row {
+      .photo-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
     @media (max-width: 600px) {
-      .photo-grid .row {
+      .photo-grid {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
@@ -307,10 +302,11 @@
     <section class="gallery">
       <h2>Photos</h2>
       <div class="photo-grid">
-        <div class="row landscape-row"></div>
+        <div class="row landscape-row">
           <img src="assets/photos/photo-1.jpg" class="landscape">
           <img src="assets/photos/photo-2.jpg" class="landscape">
           <img src="assets/photos/photo-3.jpg" class="landscape">
+        </div>
         <div class="row portrait-row">
           <img src="assets/photos/photo-4.jpg" class="portrait">
           <img src="assets/photos/photo-5.jpg" class="portrait">
