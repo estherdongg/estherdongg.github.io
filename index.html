@@ -150,16 +150,22 @@
       border-top: 1px solid var(--border);
     }
 
-    /* Common grid style */
+    /* Container for gallery */
     .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 per row */
-      gap: 12px;
-      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* spacing between rows */
     }
 
-    /* Landscape row */
-    .photo-grid.landscape-row img {
+    /* Each row = 3 columns */
+    .photo-grid .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+        }
+
+    /* Landscape row images */
+    .photo-grid .landscape-row img {
       width: 100%;
       height: 220px;
       object-fit: cover;
@@ -168,29 +174,29 @@
       display: block;
     }
 
-    /* Portrait row */
-    .photo-grid.portrait-row img {
+    /* Portrait row images */
+    .photo-grid .portrait-row img {
       width: 100%;
-      height: 320px;
+      height: 320px; /* taller for portrait */
       object-fit: cover;
       border-radius: 10px;
       border: 1px solid var(--border);
       display: block;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 900px) {
-      .photo-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 600px) {
-      .photo-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+/* Responsive: stack into 1 or 2 columns on smaller screens */
+@media (max-width: 900px) {
+  .photo-grid .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .photo-grid .row {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
-
+  
 </head>
 <body>
   <div class="container">
