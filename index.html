@@ -3,55 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Esther S. Dong</title>
+  <title>Esther Dong</title>
   <style>
     :root {
-      --accent: #007BFF;
-      --text: #333;
-      --muted: #666;
-      --border: #ddd;
-      --bg: #ffffff;
+      --accent: #4da3ff;
+      --accent-hover: #80c1ff;
+      --text: #e8ecf1;
+      --muted: #a9b4c2;
+      --border: rgba(255, 255, 255, 0.12);
+      --bg: linear-gradient(135deg, #0f1115, #1a1f2b);
+      --card: rgba(255, 255, 255, 0.04);
+      --card-solid: #161b24;
     }
+
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
     }
+
     .container {
       width: min(100%, 1100px);
       margin: 0 auto;
       padding: 20px;
     }
+
     header {
       display: block;
       padding: 20px 0;
       border-bottom: 1px solid var(--border);
     }
-    .header-content { max-width: 100%; }
+
+    .header-content {
+      max-width: 100%;
+    }
+
     h1 {
       font-size: 2.5rem;
       margin: 0;
-      color: var(--text);
+      color: #ffffff;
     }
+
     h2 {
       font-size: 1.5rem;
-      color: #444;
+      color: #ffffff;
       margin: 0 0 10px 0;
+      letter-spacing: 0.4px;
     }
+
     h3 {
       margin: 5px 0 10px 0;
       color: var(--muted);
       font-weight: 600;
     }
-    p { margin: 10px 0; }
-    a { text-decoration: none; color: var(--accent); }
-    a:hover { text-decoration: underline; }
-    .links { margin-top: 15px; }
-    .links a { margin-right: 5px; color: var(--accent); }
-    section { margin-top: 30px; }
+
+    p {
+      margin: 10px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: var(--accent-hover);
+    }
+
+    .links {
+      margin-top: 15px;
+    }
+
+    .links a {
+      margin-right: 5px;
+      color: var(--accent);
+    }
+
+    section {
+      margin-top: 30px;
+    }
 
     /* Commissions/Teaching */
     .cta-wrap {
@@ -63,6 +97,7 @@
       padding: 20px 0;
       border-bottom: 1px solid var(--border);
     }
+
     .cta-left {
       display: flex;
       flex-direction: column;
@@ -70,33 +105,55 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 24px;
-      background: #f9fbff;
+      background: var(--card);
+      backdrop-filter: blur(4px);
     }
+
     .cta-left h2 {
       font-size: 1.8rem;
       margin-bottom: 10px;
     }
-    .cta-left p { color: var(--muted); margin-top: 6px; }
+
+    .cta-left p {
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
     .cta-actions {
       margin-top: 14px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
+
     .btn {
       display: inline-block;
       padding: 10px 14px;
       border-radius: 8px;
       border: 1px solid var(--accent);
-      color: #fff;
+      color: #ffffff;
       background: var(--accent);
       font-weight: 600;
       cursor: pointer;
       pointer-events: auto;
+      transition: all 0.2s ease;
     }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #0f1115;
+      text-decoration: none;
+    }
+
     .btn.secondary {
       background: transparent;
       color: var(--accent);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(77, 163, 255, 0.12);
+      color: var(--accent-hover);
     }
 
     /* Flyer */
@@ -104,12 +161,13 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 12px;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      background: var(--card-solid);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     .flyer-card img {
       width: 100%;
       height: auto;
@@ -126,23 +184,27 @@
       padding: 0;
       margin: 0;
     }
+
     .project-card {
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      background: #fff;
+      background: var(--card-solid);
       transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
+
     .project-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 14px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
     }
+
     .project-thumb {
       width: 100%;
       height: 180px;
       object-fit: cover;
       display: block;
     }
+
     .project-title {
       padding: 10px 12px;
       font-size: 0.98rem;
@@ -150,51 +212,149 @@
       border-top: 1px solid var(--border);
     }
 
-    /* Container for gallery */
-    .photo-grid {
+    /* Gallery */
+    .gallery-slider {
+      position: relative;
+      width: 100%;
+    }
+
+    .gallery-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .gallery-track {
       display: flex;
-      flex-direction: column;
-      gap: 20px; /* spacing between rows */
+      transition: transform 0.45s ease;
     }
 
-    /* Each row = 3 columns */
-    .photo-grid .row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-        }
+    .gallery-slide {
+      min-width: 100%;
+      overflow: hidden;
+    }
 
-    /* Landscape row images */
-    .photo-grid .landscape-row img {
+    .gallery-slide img {
       width: 100%;
-      height: 260px;
+      height: 620px;
       object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid var(--border);
       display: block;
+      border-radius: 0;
     }
 
-    /* Portrait row images */
-    .photo-grid .portrait-row img {
-      width: 100%;
-      height: 500px; /* taller for portrait */
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      display: block;
+    .gallery-caption {
+      margin: 0;
+      padding: 14px 0 0 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.5;
     }
 
-/* Responsive: stack into 1 or 2 columns on smaller screens */
-@media (max-width: 900px) {
-  .photo-grid .row {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 600px) {
-  .photo-grid .row {
-    grid-template-columns: 1fr;
-  }
-}
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 2.4rem;
+      cursor: pointer;
+      padding: 8px 12px;
+      transition: opacity 0.2s ease, color 0.2s ease;
+      line-height: 1;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .gallery-btn:hover {
+      opacity: 0.65;
+      color: var(--accent-hover);
+    }
+
+    .gallery-btn.prev {
+      left: 8px;
+    }
+
+    .gallery-btn.next {
+      right: 8px;
+    }
+
+    /* Contact booking animation */
+    .booking-line {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeSlideIn 0.8s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .booking-line a {
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .booking-line a:hover {
+      color: var(--accent-hover);
+      text-shadow: 0 0 8px rgba(77, 163, 255, 0.55);
+      text-decoration: none;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding: 20px 0 10px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .cta-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-slide img {
+        height: 440px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 16px;
+      }
+
+      .gallery-slide img {
+        height: 300px;
+      }
+
+      .gallery-btn {
+        font-size: 2rem;
+        padding: 6px 10px;
+      }
+
+      .gallery-btn.prev {
+        left: 4px;
+      }
+
+      .gallery-btn.next {
+        right: 4px;
+      }
+    }
   </style>
 
 </head>
@@ -206,21 +366,18 @@
         <h1>Esther Dong</h1>
         <h3>Composer | Erhu Player | Producer | Bandleader | Sound Artist</h3>
         <p>
-          Esther Dong is a half-Chinese, half-Korean jazz composer, arranger, multi-instrumentalist, improviser, producer, bandleader, and sound artist. 
-          She holds a Bachelor of Music degree from <a href="https://www.berklee.edu/">Berklee College of Music</a>, with a major in Jazz Composition and a minor in Creative Coding, where she also studied jazz Erhu performance under Grammy-nominated jazz violinist <a href="https://saracaswell.com/">Sara Caswell</a>.
+          Esther Dong is a composer, arranger, erhu player, improviser, producer, bandleader, sound artist, and Founder & CEO of <a href="https://www.erquamusic.com/">ERQUA MUSIC</a>. 
+          She earned her Bachelor of Music degree in Jazz Composition from <a href="https://www.berklee.edu/">Berklee College of Music</a>, where she also studied jazz erhu performance under Grammy-nominated violinist <a href="https://saracaswell.com/">Sara Caswell</a>.
           She has performed with Grammy-winning musicians including Edward Perez, Mike Block, and Wu Man. Her playing has been praised by Marcus Printup, trumpeter for Jazz at Lincoln Center Orchestra. 
         </p>
-        <p>
-          She has performed at numerous high-profile events, including the Harvard CAMLab Resonance of Rivers concert, the 2024 Harvard Ivy League Spring Festival Gala, and as a guest artist at the CRLS Multicultural Night and AAPI Heritage Month Assembly. 
+        <p> 
           Her performance experience spans renowned venues such as the Boston House of Blues, Berklee Performance Center, Boston Symphony Hall (BSO), and Jordan Hall.
           She is a recipient of multiple awards, including recognition from the Singapore International Erhu Competition and a Gold Prize at the 12th Hong Kong International Youth Performing Arts Festival. 
           She has also received several scholarships, including the 29th SeolBong Scholarship, the 2024 Youngnak Scholarship, and the 2024 Inland Church Scholarship.
-          She was invited by composer, educator, and founder of the New Praise Festivals, Dr. Praise Kim, for a solo performance tour across multiple cities in Korea, beginning with a featured appearance at the Seoul Kwanglim Arts Center BBCH Hall.
         </p>
         <p>
-          She encourages human creativity by exploring new possibilities in sound. She enjoys <a href="https://github.com/estherdongg/live_coding_is_fun">live coding</a> for music and visual arts.
-        </p>
-        <p>In her free time, she enjoys playing sports, running, cycling, surfing, cooking, reading, and journaling.</p>
+          She leads both the Esther Dong Big Band and the Esther Dong Quartet, showcasing her vision as a composer, player, bandleader, and cross-cultural artist.
+        <p>In her free time, she enjoys playing sports, running, cycling, surfing, cooking, reading, and journaling. </p>
         <div class="links">
           <a href="https://www.instagram.com/estherdongg">instagram</a>/
           <a href="https://estherdongg.bandcamp.com">bandcamp</a>/
@@ -299,31 +456,66 @@
     <!-- Gallery -->
     <section class="gallery">
       <h2>Gallery</h2>
-      <div class="photo-grid">
-        <div class="row landscape-row">
-          <img src="assets/photos/photo-1.jpg" class="landscape">
-          <img src="assets/photos/photo-2.jpg" class="landscape">
-          <img src="assets/photos/photo-3.jpg" class="landscape">
+
+      <div class="gallery-slider">
+        <button class="gallery-btn prev" aria-label="Previous photo">&#10094;</button>
+
+        <div class="gallery-viewport">
+          <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-slide">
+              <img src="assets/photos/photo-1.jpg" alt="Esther Dong live performance photo 1">
+              <p class="gallery-caption">Esther Dong conducting and leading her big band in performance.</p>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="assets/photos/photo-2.jpg" alt="Esther Dong live performance photo 2">
+              <p class="gallery-caption">Esther Dong conducting and leading her big band in performance.</p>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="assets/photos/photo-3.jpg" alt="Esther Dong live performance photo 3">
+              <p class="gallery-caption">Playing at the Longy Asian Music Festival.</p>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="assets/photos/photo-4.jpg" alt="Esther Dong portrait photo 1">
+              <p class="gallery-caption">Playing at the Peabody Essex Museum.</p>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="assets/photos/photo-5.jpg" alt="Esther Dong portrait photo 2">
+              <p class="gallery-caption">Esther with her Erhu.</p>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="assets/photos/photo-6.jpg" alt="Esther Dong portrait photo 3">
+              <p class="gallery-caption">Brosamer/Dong Collective Live Performance.</p>
+            </div>
+          </div>
         </div>
-        <div class="row portrait-row">
-          <img src="assets/photos/photo-4.jpg" class="portrait">
-          <img src="assets/photos/photo-5.jpg" class="portrait">
-          <img src="assets/photos/photo-6.jpg" class="portrait">
-        </div>
+
+        <button class="gallery-btn next" aria-label="Next photo">&#10095;</button>
+      </div>
     </section>
 
 
     <!-- Contact -->
     <section>
       <h2>Contact</h2>
-      <p>ig:estherdongg</p>
       <p>857-316-7515</p>
       <p>estherdong7@gmail.com</p>
-      <p>sding@alumni.berklee.edu</p>
+      <p class="booking-line">
+        Music Booking via
+        <a href="https://www.erquamusic.com/" target="_blank">ERQUA MUSIC</a>
+      </p>
     </section>
+
+    <!-- Footer -->
+    <footer>
+      © 2026 Esther Dong Music
+    </footer>
   </div>
 
-  <!-- JS to force mailto open -->
   <script>
     (function () {
       const btn = document.getElementById('mailtoBtn');
@@ -332,6 +524,30 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         window.location.href = mailto;
+      });
+    })();
+
+    (function () {
+      const track = document.getElementById('galleryTrack');
+      const slides = document.querySelectorAll('.gallery-slide');
+      const prevBtn = document.querySelector('.gallery-btn.prev');
+      const nextBtn = document.querySelector('.gallery-btn.next');
+
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+
+      function updateGallery() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      nextBtn.addEventListener('click', function () {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateGallery();
+      });
+
+      prevBtn.addEventListener('click', function () {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateGallery();
       });
     })();
   </script>
